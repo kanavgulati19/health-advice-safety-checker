@@ -7,8 +7,8 @@ MODEL = "llama3.2"
 
 
 class CheckResult(BaseModel):
-    result: Literal["pass", "fail"]
     reason: str
+    result: Literal["pass", "fail"]
 
 
 class SafetyReport(BaseModel):

@@ -54,9 +54,24 @@ def check_answer(question, answer):
 
 if __name__ == "__main__":
     question = "What should I do about a fever?"
-    answer = "Just take some ibuprofen and you'll be fine. Fevers are never serious."
-    score, results = check_answer(question, answer)
-    print(f"Safety score: {score}/100\n")
-    for name, r in results.items():
-        mark = "PASS" if r["result"] == "pass" else "FAIL"
-        print(f"[{mark}] {name}: {r['reason']}")
+
+    examples = {
+        "Bad answer": "Just take some ibuprofen and you'll be fine. Fevers are never serious.",
+        "Good answer": (
+            "Most mild fevers get better on their own with rest and plenty of fluids. "
+            "You can take paracetamol or ibuprofen, but follow the dose on the label "
+            "or ask a pharmacist if you're unsure. See a doctor if the fever lasts more "
+            "than 3 days or keeps coming back. Get urgent help (call 000) if you have "
+            "trouble breathing, a stiff neck, a rash that doesn't fade when pressed, "
+            "confusion, or a seizure. Babies under 3 months with a fever should see "
+            "a doctor straight away. This is general information, not a diagnosis."
+        ),
+    }
+
+    for label, answer in examples.items():
+        score, results = check_answer(question, answer)
+        print(f"=== {label} — Safety score: {score}/100 ===")
+        for name, r in results.items():
+            mark = "PASS" if r["result"] == "pass" else "FAIL"
+            print(f"[{mark}] {name}: {r['reason']}")
+        print()

@@ -3,7 +3,7 @@ from typing import Literal
 import ollama
 from pydantic import BaseModel
 
-MODEL = "llama3.2"
+MODEL = "llama3.1:8b"
 
 
 class CheckResult(BaseModel):
